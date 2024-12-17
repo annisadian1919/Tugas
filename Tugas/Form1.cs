@@ -34,6 +34,8 @@ namespace Tugas
 
             // Tampilkan form login
             loginForm.ShowDialog(); // Menggunakan ShowDialog agar form tampil sebagai modal
+
+            this.Hide();
         }
 
         private void gelombang2_Click(object sender, EventArgs e)

@@ -83,6 +83,8 @@
             this.btnSign.TabIndex = 6;
             this.btnSign.Text = "Sign Up";
             this.btnSign.UseVisualStyleBackColor = false;
+            this.btnSign.Click += new System.EventHandler(this.btnSign_Click);
+
             // 
             // panel3
             // 
