@@ -4,9 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient; // Import library MySQL
+
 
 namespace Tugas
 {
@@ -19,23 +22,71 @@ namespace Tugas
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           
             // Ambil input dari TextBox
             string username = txtUsername.Text;
             string password = txtPassword.Text;
 
-            // Cek validasi login
-            if (username == "admin" && password == "1234") // Contoh login sederhana
-            {
-                MessageBox.Show("Login berhasil!", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Hash password input untuk dicocokkan dengan database
+            string hashedPassword = HashPassword(password);
 
-                // Tutup FormLogin jika berhasil login
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
-            else
+            // Koneksi ke database MySQL
+            string connectionString = "server=localhost;port=3307;database=db_sigmafarma;uid=root;pwd=Password123!;";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                MessageBox.Show("Username atau password salah!", "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    // Buka koneksi
+                    connection.Open();
+
+                    // Query untuk mengecek username dan password
+                    string query = "SELECT * FROM users WHERE username = @username AND password = @password";
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                        cmd.Parameters.AddWithValue("@password", hashedPassword);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                // Login berhasil
+                                MessageBox.Show("Login berhasil!", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                // Buka form menu utama
+                                Menu menu = new Menu(); // Kirim username ke form selanjutnya
+                                menu.Show();
+
+                                // Tutup form login
+                                this.Hide();
+                            }
+                            else
+                            {
+                                // Login gagal
+                                MessageBox.Show("Username atau password salah!", "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Tampilkan error jika ada
+                    MessageBox.Show("Error: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        // Fungsi untuk hash password menggunakan SHA256
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
             }
         }
 
@@ -48,6 +99,13 @@ namespace Tugas
         {
 
         }
+
+        private void btnSign_Click(object sender, EventArgs e)
+        {
+            SignUp signUpForm = new SignUp();
+            signUpForm.ShowDialog();
+        }
+
     }
 }
 
