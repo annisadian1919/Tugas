@@ -13,11 +13,13 @@ using MySql.Data.MySqlClient; // Import library MySQL
 
 namespace Tugas
 {
+
     public partial class SignUp : Form
     {
         public SignUp()
         {
             InitializeComponent();
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
