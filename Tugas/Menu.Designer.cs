@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnCari = new System.Windows.Forms.Button();
             this.lblStokParacetamol = new System.Windows.Forms.Label();
             this.btnKeranjang1 = new System.Windows.Forms.Button();
@@ -88,22 +88,20 @@
             this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtSearch
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(7, 5);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(625, 40);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Cari Produk...";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(7, 5);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSearch.Multiline = true;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(625, 40);
+            this.txtSearch.TabIndex = 0;
             // 
             // btnCari
             // 
             this.btnCari.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCari.Location = new System.Drawing.Point(634, 1);
+            this.btnCari.Location = new System.Drawing.Point(638, 5);
             this.btnCari.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCari.Name = "btnCari";
             this.btnCari.Size = new System.Drawing.Size(84, 41);
@@ -467,7 +465,7 @@
             this.panel1.Controls.Add(this.btnKeranjangSaya);
             this.panel1.Controls.Add(this.listBox);
             this.panel1.Controls.Add(this.btnCari);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Location = new System.Drawing.Point(64, 68);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -625,7 +623,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnCari;
         private System.Windows.Forms.Label lblStokParacetamol;
         private System.Windows.Forms.Button btnKeranjang1;

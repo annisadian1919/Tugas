@@ -101,6 +101,13 @@ namespace Tugas
         {
 
         }
+
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.ShowDialog();
+            this.Hide();
+        }
     }
 
 }

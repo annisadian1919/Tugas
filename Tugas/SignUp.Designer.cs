@@ -45,9 +45,12 @@
             this.lblNamaBelakang = new System.Windows.Forms.Label();
             this.lblNamaDepan = new System.Windows.Forms.Label();
             this.lblSignUp = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnX = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -234,11 +237,36 @@
             this.lblSignUp.TabIndex = 0;
             this.lblSignUp.Text = "Buat Akun";
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.panel2.Controls.Add(this.btnX);
+            this.panel2.Location = new System.Drawing.Point(56, 13);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1236, 54);
+            this.panel2.TabIndex = 13;
+            // 
+            // btnX
+            // 
+            this.btnX.BackColor = System.Drawing.Color.Red;
+            this.btnX.ForeColor = System.Drawing.Color.White;
+            this.btnX.Location = new System.Drawing.Point(1187, 4);
+            this.btnX.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnX.Name = "btnX";
+            this.btnX.Size = new System.Drawing.Size(36, 38);
+            this.btnX.TabIndex = 5;
+            this.btnX.Text = "X";
+            this.btnX.UseVisualStyleBackColor = false;
+            this.btnX.Click += new System.EventHandler(this.btnX_Click);
+
+            // 
             // SignUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1388, 908);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "SignUp";
@@ -248,6 +276,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -271,5 +300,7 @@
         private System.Windows.Forms.Label lblPesan;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnSign;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnX;
     }
 }
