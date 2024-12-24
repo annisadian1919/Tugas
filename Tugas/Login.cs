@@ -49,12 +49,17 @@ namespace Tugas
                         {
                             if (reader.HasRows)
                             {
+                                reader.Read();
+                                int idUser = reader.GetInt32("id_user");
+
                                 // Login berhasil
                                 MessageBox.Show("Login berhasil!", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 // Buka form menu utama
-                                Menu menu = new Menu(); // Kirim username ke form selanjutnya
+                                Menu menu = new Menu(idUser); // Kirim username ke form selanjutnya
                                 menu.Show();
+
+                                Pembayaran pembayaran = new Pembayaran(idUser);
 
                                 // Tutup form login
                                 this.Hide();
@@ -74,6 +79,7 @@ namespace Tugas
                 }
             }
         }
+
 
         // Fungsi untuk hash password menggunakan SHA256
         private string HashPassword(string password)
@@ -106,6 +112,12 @@ namespace Tugas
             signUpForm.ShowDialog();
         }
 
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Hide();
+        }
     }
 }
 

@@ -34,8 +34,8 @@
             this.lblTambahKurang = new System.Windows.Forms.Label();
             this.btnTambah = new System.Windows.Forms.Button();
             this.btnKurang = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblnamaObat = new System.Windows.Forms.Label();
+            this.pictureBoxObat = new System.Windows.Forms.PictureBox();
             this.lblStok = new System.Windows.Forms.Label();
             this.lblBuatPesanan = new System.Windows.Forms.Button();
             this.btnAntar = new System.Windows.Forms.Button();
@@ -49,7 +49,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxObat)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -61,8 +61,8 @@
             this.panel1.Controls.Add(this.lblTambahKurang);
             this.panel1.Controls.Add(this.btnTambah);
             this.panel1.Controls.Add(this.btnKurang);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.lblnamaObat);
+            this.panel1.Controls.Add(this.pictureBoxObat);
             this.panel1.Controls.Add(this.lblStok);
             this.panel1.Controls.Add(this.lblBuatPesanan);
             this.panel1.Location = new System.Drawing.Point(15, 16);
@@ -114,26 +114,26 @@
             this.btnKurang.Text = "−";
             this.btnKurang.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // lblnamaObat
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(177, 365);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(322, 50);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "( Menampilkan nama, harga,\r\n dan stok produk dari database )\r\n";
+            this.lblnamaObat.AutoSize = true;
+            this.lblnamaObat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblnamaObat.Location = new System.Drawing.Point(186, 365);
+            this.lblnamaObat.Name = "lblnamaObat";
+            this.lblnamaObat.Size = new System.Drawing.Size(120, 25);
+            this.lblnamaObat.TabIndex = 7;
+            this.lblnamaObat.Text = "Nama Obat";
             // 
-            // pictureBox1
+            // pictureBoxObat
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 365);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(155, 124);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxObat.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.pictureBoxObat.Location = new System.Drawing.Point(15, 365);
+            this.pictureBoxObat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBoxObat.Name = "pictureBoxObat";
+            this.pictureBoxObat.Size = new System.Drawing.Size(155, 124);
+            this.pictureBoxObat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxObat.TabIndex = 6;
+            this.pictureBoxObat.TabStop = false;
             // 
             // lblStok
             // 
@@ -144,6 +144,7 @@
             this.lblStok.Size = new System.Drawing.Size(127, 22);
             this.lblStok.TabIndex = 5;
             this.lblStok.Text = "Stok dari Toko";
+            this.lblStok.Click += new System.EventHandler(this.lblStok_Click);
             // 
             // lblBuatPesanan
             // 
@@ -275,7 +276,7 @@
             this.Text = "Form2";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxObat)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -297,9 +298,9 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxObat;
         private System.Windows.Forms.Label lblStok;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblnamaObat;
         private System.Windows.Forms.Button btnTambah;
         private System.Windows.Forms.Button btnKurang;
         private System.Windows.Forms.Label lblTambahKurang;
