@@ -61,7 +61,6 @@
             this.lblHargaOBH = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.btnKeranjangSaya = new System.Windows.Forms.Button();
-            this.btnBayar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.listBox = new System.Windows.Forms.ListBox();
@@ -97,6 +96,8 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(625, 40);
             this.txtSearch.TabIndex = 0;
+            this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
+            this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);
             // 
             // btnCari
             // 
@@ -444,24 +445,11 @@
             this.btnKeranjangSaya.UseVisualStyleBackColor = true;
             this.btnKeranjangSaya.Click += new System.EventHandler(this.btnKeranjangSaya_Click);
             // 
-            // btnBayar
-            // 
-            this.btnBayar.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.btnBayar.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBayar.Location = new System.Drawing.Point(164, 686);
-            this.btnBayar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnBayar.Name = "btnBayar";
-            this.btnBayar.Size = new System.Drawing.Size(115, 50);
-            this.btnBayar.TabIndex = 9;
-            this.btnBayar.Text = "Bayar";
-            this.btnBayar.UseVisualStyleBackColor = false;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.btnBayar);
             this.panel1.Controls.Add(this.btnKeranjangSaya);
             this.panel1.Controls.Add(this.listBox);
             this.panel1.Controls.Add(this.btnCari);
@@ -656,7 +644,6 @@
         private System.Windows.Forms.Label lblHargaOBH;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Button btnKeranjangSaya;
-        private System.Windows.Forms.Button btnBayar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.ListBox listBox;

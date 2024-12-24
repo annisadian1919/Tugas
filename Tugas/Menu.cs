@@ -49,7 +49,7 @@ namespace Tugas
             btnKeranjang5.Click += btnKeranjang_Click;
             btnKeranjang6.Click += btnKeranjang_Click;
 
-            txtSearch.Text = "...";
+            txtSearch.Text = "Cari Produk...";
             txtSearch.ForeColor = Color.Gray;
         }
 
@@ -147,6 +147,16 @@ namespace Tugas
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtSearch_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearch_Leave(object sender, EventArgs e)
         {
 
         }
