@@ -62,6 +62,7 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.btnKeranjangSaya = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnX = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.listBox = new System.Windows.Forms.ListBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -96,6 +97,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(625, 40);
             this.txtSearch.TabIndex = 0;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
             this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);
             // 
@@ -449,6 +451,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.btnX);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnKeranjangSaya);
             this.panel1.Controls.Add(this.listBox);
@@ -461,6 +464,19 @@
             this.panel1.Size = new System.Drawing.Size(1310, 788);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // btnX
+            // 
+            this.btnX.BackColor = System.Drawing.Color.Red;
+            this.btnX.ForeColor = System.Drawing.Color.White;
+            this.btnX.Location = new System.Drawing.Point(1265, 8);
+            this.btnX.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnX.Name = "btnX";
+            this.btnX.Size = new System.Drawing.Size(36, 38);
+            this.btnX.TabIndex = 6;
+            this.btnX.Text = "X";
+            this.btnX.UseVisualStyleBackColor = false;
+            this.btnX.Click += new System.EventHandler(this.btnX_Click);
             // 
             // label2
             // 
@@ -654,5 +670,6 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnX;
     }
 }

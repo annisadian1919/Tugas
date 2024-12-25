@@ -37,7 +37,7 @@
             this.lblnamaObat = new System.Windows.Forms.Label();
             this.pictureBoxObat = new System.Windows.Forms.PictureBox();
             this.lblStok = new System.Windows.Forms.Label();
-            this.lblBuatPesanan = new System.Windows.Forms.Button();
+            this.btnBuatPesanan = new System.Windows.Forms.Button();
             this.btnAntar = new System.Windows.Forms.Button();
             this.btnAmbil = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,6 +48,7 @@
             this.lblAlamat = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnX = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxObat)).BeginInit();
             this.panel2.SuspendLayout();
@@ -64,7 +65,7 @@
             this.panel1.Controls.Add(this.lblnamaObat);
             this.panel1.Controls.Add(this.pictureBoxObat);
             this.panel1.Controls.Add(this.lblStok);
-            this.panel1.Controls.Add(this.lblBuatPesanan);
+            this.panel1.Controls.Add(this.btnBuatPesanan);
             this.panel1.Location = new System.Drawing.Point(15, 16);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
@@ -146,15 +147,16 @@
             this.lblStok.Text = "Stok dari Toko";
             this.lblStok.Click += new System.EventHandler(this.lblStok_Click);
             // 
-            // lblBuatPesanan
+            // btnBuatPesanan
             // 
-            this.lblBuatPesanan.Location = new System.Drawing.Point(33, 628);
-            this.lblBuatPesanan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lblBuatPesanan.Name = "lblBuatPesanan";
-            this.lblBuatPesanan.Size = new System.Drawing.Size(321, 59);
-            this.lblBuatPesanan.TabIndex = 4;
-            this.lblBuatPesanan.Text = "Buat Pesanan";
-            this.lblBuatPesanan.UseVisualStyleBackColor = true;
+            this.btnBuatPesanan.Location = new System.Drawing.Point(33, 628);
+            this.btnBuatPesanan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnBuatPesanan.Name = "btnBuatPesanan";
+            this.btnBuatPesanan.Size = new System.Drawing.Size(321, 59);
+            this.btnBuatPesanan.TabIndex = 4;
+            this.btnBuatPesanan.Text = "Buat Pesanan";
+            this.btnBuatPesanan.UseVisualStyleBackColor = true;
+            this.btnBuatPesanan.Click += new System.EventHandler(this.btnBuatPesanan_Click);
             // 
             // btnAntar
             // 
@@ -256,12 +258,27 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel3.Controls.Add(this.btnX);
             this.panel3.Controls.Add(this.lblPesananSaya);
-            this.panel3.Location = new System.Drawing.Point(14, 20);
+            this.panel3.Location = new System.Drawing.Point(14, 16);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1313, 52);
             this.panel3.TabIndex = 5;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // btnX
+            // 
+            this.btnX.BackColor = System.Drawing.Color.Red;
+            this.btnX.ForeColor = System.Drawing.Color.White;
+            this.btnX.Location = new System.Drawing.Point(1265, 4);
+            this.btnX.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnX.Name = "btnX";
+            this.btnX.Size = new System.Drawing.Size(36, 38);
+            this.btnX.TabIndex = 6;
+            this.btnX.Text = "X";
+            this.btnX.UseVisualStyleBackColor = false;
+            this.btnX.Click += new System.EventHandler(this.btnX_Click);
             // 
             // Pembayaran
             // 
@@ -294,7 +311,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAntar;
         private System.Windows.Forms.Button btnAmbil;
-        private System.Windows.Forms.Button lblBuatPesanan;
+        private System.Windows.Forms.Button btnBuatPesanan;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox textBox1;
@@ -306,5 +323,6 @@
         private System.Windows.Forms.Label lblTambahKurang;
         private System.Windows.Forms.Button btnSimpanAlamat;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnX;
     }
 }

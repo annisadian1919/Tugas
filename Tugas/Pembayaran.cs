@@ -14,11 +14,9 @@ namespace Tugas
 {
     public partial class Pembayaran : Form
     {
-        private int userId;
-        public Pembayaran(int idUser)
+        public Pembayaran()
         {
             InitializeComponent();
-            this.userId = idUser;
         }
 
         private List<int> idObatList; // List untuk menyimpan ID obat
@@ -55,6 +53,25 @@ namespace Tugas
         private void lblStok_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            Menu menu = new Menu();
+            menu.Show();
+            this.Hide();
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnBuatPesanan_Click(object sender, EventArgs e)
+        {
+            Resi resi = new Resi();
+            resi.Show();
+            this.Hide();
         }
     }
 }

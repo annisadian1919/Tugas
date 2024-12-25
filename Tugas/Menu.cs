@@ -13,18 +13,17 @@ namespace Tugas
 {
     public partial class Menu : Form
     {
-        private DatabaseHelper dbHelper;
-        private int userId;
-        public Menu(int idUser)
+        
+        public static DatabaseHelper dbHelper = new DatabaseHelper();
+        public Menu()
         {
             InitializeComponent();
-            dbHelper = new DatabaseHelper(); // Inisialisasi DatabaseHelper
         }
 
         //private void textBox1_TextChanged(object sender, EventArgs e)
         //{
 
-        //}
+            //}
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -55,18 +54,44 @@ namespace Tugas
 
         private void btnKeranjang_Click(object sender, EventArgs e)
         {
-            // Misalnya tombol btnKeranjang1 adalah untuk Paracetamol
+           try
+           {
             Button btn = sender as Button;
+
             int idObat = Convert.ToInt32(btn.Tag); // Ambil ID obat dari Tag tombol
-            int idUser = this.userId; // ID User yang sedang login (contoh)
-            int jumlah = 1;
-            keranjangObat.Add(idObat); // Simpan ID obat ke List
+            int jumlah = 1; // Default jumlah 1
 
-            // Tambah ke database (opsional, kalau memang perlu)
-            dbHelper.TambahKeKeranjang(this.userId, idObat, jumlah);
+                // Ambil data obat berdasarkan id
+           Dictionary<string, object> dataObat = DatabaseHelper.GetObatById(idObat);
 
-            MessageBox.Show("Obat berhasil ditambahkan ke keranjang.");
+                if (dataObat.Count == 0)
+                {
+                    MessageBox.Show("Data obat tidak ditemukan.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+            int stok = Convert.ToInt32(dataObat["stok"]); // Ambil stok dari hasil query
+
+            if (stok <= 0)
+            {
+                MessageBox.Show($"Stok obat \"{dataObat["nama_obat"]}\" habis. Tidak dapat ditambahkan ke keranjang.", "Stok Habis", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+                int idUser = Login.LoggedInUserId;
+                // Jika stok tersedia, tambahkan ke keranjang
+                dbHelper.TambahKeKeranjang(idUser, idObat, jumlah);
+                Console.WriteLine("Id User = " + idUser);
+
+                // Tambahkan ID obat ke List (jika ada variabel keranjangObat)
+                keranjangObat.Add(idObat);
+
+            MessageBox.Show($"Obat \"{dataObat["nama_obat"]}\" berhasil ditambahkan ke keranjang! Stok tersisa: {stok - jumlah}", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Error: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+            }
 
         private List<int> keranjangObat = new List<int>(); // List untuk simpan ID obat
 
@@ -157,6 +182,18 @@ namespace Tugas
         }
 
         private void txtSearch_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.ShowDialog();
+            this.Hide();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -20,6 +20,7 @@ namespace Tugas
             InitializeComponent();
         }
 
+        public static int LoggedInUserId { get; private set; }
         private void btnLogin_Click(object sender, EventArgs e)
         {
             // Ambil input dari TextBox
@@ -39,7 +40,7 @@ namespace Tugas
                     connection.Open();
 
                     // Query untuk mengecek username dan password
-                    string query = "SELECT * FROM users WHERE username = @username AND password = @password";
+                    string query = "SELECT id_user FROM users WHERE username = @username AND password = @password";
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@username", username);
@@ -50,16 +51,16 @@ namespace Tugas
                             if (reader.HasRows)
                             {
                                 reader.Read();
-                                int idUser = reader.GetInt32("id_user");
+                                LoggedInUserId = Convert.ToInt32(reader["id_user"]);  // Menyimpan id_user
 
                                 // Login berhasil
                                 MessageBox.Show("Login berhasil!", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 // Buka form menu utama
-                                Menu menu = new Menu(idUser); // Kirim username ke form selanjutnya
+                                Menu menu = new Menu();
                                 menu.Show();
 
-                                Pembayaran pembayaran = new Pembayaran(idUser);
+                                Pembayaran pembayaran = new Pembayaran();
 
                                 // Tutup form login
                                 this.Hide();
