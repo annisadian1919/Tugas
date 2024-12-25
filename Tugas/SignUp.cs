@@ -48,6 +48,13 @@ namespace Tugas
                 {
                     // Buka koneksi
                     connection.Open();
+                    if (string.IsNullOrEmpty(namaDepan) || string.IsNullOrEmpty(namaBelakang) || 
+                        string.IsNullOrEmpty(username) || string.IsNullOrEmpty(noTelp) || string.IsNullOrEmpty(password))
+                    {
+                        // Tampilkan pesan error jika ada field kosong
+                        MessageBox.Show("Semua field harus diisi!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Hentikan eksekusi jika ada field yang kosong
+                    }
 
                     // Query untuk memasukkan data user
                     string query = "INSERT INTO users (nama_depan, nama_belakang, username, no_telp, password) " +

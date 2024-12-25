@@ -36,7 +36,7 @@
             this.lblParacetamol = new System.Windows.Forms.Label();
             this.lblHargaParacetamol = new System.Windows.Forms.Label();
             this.btnKeranjang2 = new System.Windows.Forms.Button();
-            this.lblStokProomag = new System.Windows.Forms.Label();
+            this.lblStokPromag = new System.Windows.Forms.Label();
             this.lblHargaPromaag = new System.Windows.Forms.Label();
             this.lblPromaag = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -64,7 +64,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnX = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.listBox = new System.Windows.Forms.ListBox();
+            this.listBoxObat = new System.Windows.Forms.ListBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -72,6 +72,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.comboJenisObat = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -182,14 +183,14 @@
             this.btnKeranjang2.Text = "+Keranjang";
             this.btnKeranjang2.UseVisualStyleBackColor = false;
             // 
-            // lblStokProomag
+            // lblStokPromag
             // 
-            this.lblStokProomag.AutoSize = true;
-            this.lblStokProomag.Location = new System.Drawing.Point(15, 188);
-            this.lblStokProomag.Name = "lblStokProomag";
-            this.lblStokProomag.Size = new System.Drawing.Size(42, 20);
-            this.lblStokProomag.TabIndex = 3;
-            this.lblStokProomag.Text = "Stok";
+            this.lblStokPromag.AutoSize = true;
+            this.lblStokPromag.Location = new System.Drawing.Point(15, 188);
+            this.lblStokPromag.Name = "lblStokPromag";
+            this.lblStokPromag.Size = new System.Drawing.Size(42, 20);
+            this.lblStokPromag.TabIndex = 3;
+            this.lblStokPromag.Text = "Stok";
             // 
             // lblHargaPromaag
             // 
@@ -292,9 +293,8 @@
             this.lblStokDegirol.AutoSize = true;
             this.lblStokDegirol.Location = new System.Drawing.Point(4, 188);
             this.lblStokDegirol.Name = "lblStokDegirol";
-            this.lblStokDegirol.Size = new System.Drawing.Size(42, 20);
+            this.lblStokDegirol.Size = new System.Drawing.Size(0, 20);
             this.lblStokDegirol.TabIndex = 3;
-            this.lblStokDegirol.Text = "Stok";
             // 
             // lablHargaDegirol
             // 
@@ -451,10 +451,11 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.comboJenisObat);
             this.panel1.Controls.Add(this.btnX);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnKeranjangSaya);
-            this.panel1.Controls.Add(this.listBox);
+            this.panel1.Controls.Add(this.listBoxObat);
             this.panel1.Controls.Add(this.btnCari);
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.flowLayoutPanel1);
@@ -487,15 +488,15 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "Applikasi by SigmaFarma";
             // 
-            // listBox
+            // listBoxObat
             // 
-            this.listBox.FormattingEnabled = true;
-            this.listBox.ItemHeight = 20;
-            this.listBox.Location = new System.Drawing.Point(7, 54);
-            this.listBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(625, 104);
-            this.listBox.TabIndex = 11;
+            this.listBoxObat.FormattingEnabled = true;
+            this.listBoxObat.ItemHeight = 20;
+            this.listBoxObat.Location = new System.Drawing.Point(7, 54);
+            this.listBoxObat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listBoxObat.Name = "listBoxObat";
+            this.listBoxObat.Size = new System.Drawing.Size(625, 144);
+            this.listBoxObat.TabIndex = 11;
             // 
             // flowLayoutPanel1
             // 
@@ -530,7 +531,7 @@
             this.panel3.Controls.Add(this.pictureBox2);
             this.panel3.Controls.Add(this.lblPromaag);
             this.panel3.Controls.Add(this.lblHargaPromaag);
-            this.panel3.Controls.Add(this.lblStokProomag);
+            this.panel3.Controls.Add(this.lblStokPromag);
             this.panel3.Controls.Add(this.btnKeranjang2);
             this.panel3.Location = new System.Drawing.Point(210, 4);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -590,6 +591,16 @@
             this.panel6.Size = new System.Drawing.Size(217, 276);
             this.panel6.TabIndex = 4;
             // 
+            // comboJenisObat
+            // 
+            this.comboJenisObat.FormattingEnabled = true;
+            this.comboJenisObat.Location = new System.Drawing.Point(518, 54);
+            this.comboJenisObat.Name = "comboJenisObat";
+            this.comboJenisObat.Size = new System.Drawing.Size(114, 28);
+            this.comboJenisObat.TabIndex = 13;
+            this.comboJenisObat.Text = "Jenis Obat";
+            this.comboJenisObat.SelectedIndexChanged += new System.EventHandler(this.comboJenisObat_SelectedIndexChanged);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -635,7 +646,7 @@
         private System.Windows.Forms.Label lblParacetamol;
         private System.Windows.Forms.Label lblHargaParacetamol;
         private System.Windows.Forms.Button btnKeranjang2;
-        private System.Windows.Forms.Label lblStokProomag;
+        private System.Windows.Forms.Label lblStokPromag;
         private System.Windows.Forms.Label lblHargaPromaag;
         private System.Windows.Forms.Label lblPromaag;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -662,7 +673,7 @@
         private System.Windows.Forms.Button btnKeranjangSaya;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.ListBox listBox;
+        private System.Windows.Forms.ListBox listBoxObat;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
@@ -671,5 +682,6 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnX;
+        private System.Windows.Forms.ComboBox comboJenisObat;
     }
 }

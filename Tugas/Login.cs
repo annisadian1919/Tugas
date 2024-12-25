@@ -39,6 +39,13 @@ namespace Tugas
                     // Buka koneksi
                     connection.Open();
 
+                    if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                    {
+                        // Tampilkan pesan error jika ada field kosong
+                        MessageBox.Show("Semua field harus diisi!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Hentikan eksekusi jika ada field yang kosong
+                    }
+
                     // Query untuk mengecek username dan password
                     string query = "SELECT id_user FROM users WHERE username = @username AND password = @password";
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -111,6 +118,7 @@ namespace Tugas
         {
             SignUp signUpForm = new SignUp();
             signUpForm.ShowDialog();
+            this.Hide();
         }
 
         private void btnX_Click(object sender, EventArgs e)

@@ -48,8 +48,31 @@ namespace Tugas
             btnKeranjang5.Click += btnKeranjang_Click;
             btnKeranjang6.Click += btnKeranjang_Click;
 
+            // Isi comboJenisObat
+            comboJenisObat.Items.Add("Semua");
+            comboJenisObat.Items.Add("Tablet");
+            comboJenisObat.Items.Add("Sirup");
+            comboJenisObat.Items.Add("Salep");
+            comboJenisObat.Items.Add("Kapsul");
+            comboJenisObat.SelectedIndex = 0; // Default ke "Semua"
+
             txtSearch.Text = "Cari Produk...";
             txtSearch.ForeColor = Color.Gray;
+
+            int stokDegirol = dbHelper.GetStokObat("Degirol");
+            int stokParacetamol = dbHelper.GetStokObat("Paracetamol");
+            int stokPromag = dbHelper.GetStokObat("Promag");
+            int stokOBH = dbHelper.GetStokObat("OBH Combi");
+            int stokImboost = dbHelper.GetStokObat("Imboost 10 Tablet");
+            int stokInsto = dbHelper.GetStokObat("Insto Mata Regular");
+
+            // Update label dengan stok yang didapat
+            lblStokDegirol.Text = $"Stok: {stokDegirol}";
+            lblStokParacetamol.Text = $"Stok: {stokParacetamol}";
+            lblStokPromag.Text = $"Stok: {stokPromag}";
+            lblStokImboost.Text = $"Stok: {stokImboost}";
+            lblStokOBH.Text = $"Stok: {stokOBH}";
+            lblStokInsto.Text = $"Stok: {stokInsto}";
         }
 
         private void btnKeranjang_Click(object sender, EventArgs e)
@@ -119,46 +142,42 @@ namespace Tugas
 
         private void btnCari_Click(object sender, EventArgs e)
         {
-            string cariObat = txtSearch.Text;
-
-            string connectionString = "server=localhost;port=3307;database=db_sigmafarma;uid=root;pwd=Password123!;";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            try
             {
-                try
+                // Ambil filter jenis obat dan keyword
+                string jenisObat = comboJenisObat.SelectedItem?.ToString();
+                string keyword = txtSearch.Text.Trim();
+
+                if (keyword == "Cari Produk...")
                 {
-                    // Buka koneksi
-                    connection.Open();
+                    keyword = ""; // Anggap kosong kalau masih placeholder
+                }
 
-                    // Query untuk mencari obat
-                    string query = "SELECT * FROM data_obat WHERE nama_obat = @namaObat";
-                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                // Validasi comboJenisObat
+                if (string.IsNullOrEmpty(jenisObat)) jenisObat = "Semua";
+
+                // Ambil data dari database
+                var obatList = dbHelper.GetFilteredObat(jenisObat, keyword);
+
+                // Bersihkan ListBox
+                listBoxObat.Items.Clear();
+
+                if (obatList.Count > 0)
+                {
+                    foreach (var obat in obatList)
                     {
-                        cmd.Parameters.AddWithValue("@namaObat", cariObat);
-
-                        // Eksekusi query dan baca hasilnya
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.HasRows)
-                            {
-                                // Jika data ditemukan
-                                MessageBox.Show("Obat tersedia", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                // Jika data tidak ditemukan
-                                MessageBox.Show("Obat tidak ditemukan", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                        }
+                        listBoxObat.Items.Add(obat);
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    // Tampilkan error jika ada
-                    MessageBox.Show("Error: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Tidak ada data yang cocok dengan filter atau kata kunci yang dimasukkan.", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
@@ -178,12 +197,20 @@ namespace Tugas
 
         private void txtSearch_Enter(object sender, EventArgs e)
         {
-
+            if (txtSearch.Text == "Cari Produk...")
+            {
+                txtSearch.Text = "";
+                txtSearch.ForeColor = Color.Black;
+            }
         }
 
         private void txtSearch_Leave(object sender, EventArgs e)
         {
-
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                txtSearch.Text = "Cari Produk...";
+                txtSearch.ForeColor = Color.Gray;
+            }
         }
 
         private void btnX_Click(object sender, EventArgs e)
@@ -194,6 +221,11 @@ namespace Tugas
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboJenisObat_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
