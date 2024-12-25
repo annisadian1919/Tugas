@@ -177,6 +177,7 @@
             this.btnAmbil.TabIndex = 2;
             this.btnAmbil.Text = "Ambil di Tempat";
             this.btnAmbil.UseVisualStyleBackColor = true;
+            this.btnAmbil.Click += new System.EventHandler(this.btnAmbil_Click);
             // 
             // label1
             // 

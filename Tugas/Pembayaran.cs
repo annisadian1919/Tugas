@@ -69,9 +69,14 @@ namespace Tugas
 
         private void btnBuatPesanan_Click(object sender, EventArgs e)
         {
-            Resi resi = new Resi();
-            resi.Show();
+            Payment payment = new Payment();
+            payment.Show();
             this.Hide();
+        }
+
+        private void btnAmbil_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
