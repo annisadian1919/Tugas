@@ -33,7 +33,7 @@ namespace Tugas
             Login loginForm = new Login();
 
             // Tampilkan form login
-            loginForm.ShowDialog(); // Menggunakan ShowDialog agar form tampil sebagai modal
+            loginForm.Show();
 
             this.Hide();
         }

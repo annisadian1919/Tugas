@@ -7,20 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient; // Import library MySQL
 
 namespace Tugas
 {
     public partial class Menu : Form
     {
-        public Menu()
+        private DatabaseHelper dbHelper;
+        private int userId;
+        public Menu(int idUser)
         {
             InitializeComponent();
+            dbHelper = new DatabaseHelper(); // Inisialisasi DatabaseHelper
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
+        //private void textBox1_TextChanged(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -29,7 +33,48 @@ namespace Tugas
 
         private void Menu_Load(object sender, EventArgs e)
         {
+            // Set Tag untuk tombol atau inisialisasi lainnya jika perlu
+            btnKeranjang1.Tag = 2; // id_obat Paracetamol
+            btnKeranjang2.Tag = 3; // id_obat Promaag
+            btnKeranjang3.Tag = 4; // id_obat Insto Mata Regular
+            btnKeranjang4.Tag = 5; // id_obat Degirol
+            btnKeranjang5.Tag = 6; // id_obat Imboost 10 Tablet
+            btnKeranjang6.Tag = 7; // id_obat OBH Combi
 
+            // Menghubungkan tombol dengan event handler
+            btnKeranjang1.Click += btnKeranjang_Click;
+            btnKeranjang2.Click += btnKeranjang_Click;
+            btnKeranjang3.Click += btnKeranjang_Click; 
+            btnKeranjang4.Click += btnKeranjang_Click;
+            btnKeranjang5.Click += btnKeranjang_Click;
+            btnKeranjang6.Click += btnKeranjang_Click;
+
+            txtSearch.Text = "Cari Produk...";
+            txtSearch.ForeColor = Color.Gray;
+        }
+
+        private void btnKeranjang_Click(object sender, EventArgs e)
+        {
+            // Misalnya tombol btnKeranjang1 adalah untuk Paracetamol
+            Button btn = sender as Button;
+            int idObat = Convert.ToInt32(btn.Tag); // Ambil ID obat dari Tag tombol
+            int idUser = this.userId; // ID User yang sedang login (contoh)
+            int jumlah = 1;
+            keranjangObat.Add(idObat); // Simpan ID obat ke List
+
+            // Tambah ke database (opsional, kalau memang perlu)
+            dbHelper.TambahKeKeranjang(this.userId, idObat, jumlah);
+
+            MessageBox.Show("Obat berhasil ditambahkan ke keranjang.");
+        }
+
+        private List<int> keranjangObat = new List<int>(); // List untuk simpan ID obat
+
+        private void btnKeranjangSaya_Click(object sender, EventArgs e)
+        {
+            Pembayaran pembayaranForm = new Pembayaran(keranjangObat);
+            pembayaranForm.Show();
+            this.Hide();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -49,6 +94,45 @@ namespace Tugas
 
         private void btnCari_Click(object sender, EventArgs e)
         {
+            string cariObat = txtSearch.Text;
+
+            string connectionString = "server=localhost;port=3307;database=db_sigmafarma;uid=root;pwd=Password123!;";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    // Buka koneksi
+                    connection.Open();
+
+                    // Query untuk mencari obat
+                    string query = "SELECT * FROM data_obat WHERE nama_obat = @namaObat";
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@namaObat", cariObat);
+
+                        // Eksekusi query dan baca hasilnya
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                // Jika data ditemukan
+                                MessageBox.Show("Obat tersedia", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                // Jika data tidak ditemukan
+                                MessageBox.Show("Obat tidak ditemukan", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Tampilkan error jika ada
+                    MessageBox.Show("Error: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
 
         }
 
@@ -63,6 +147,16 @@ namespace Tugas
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtSearch_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearch_Leave(object sender, EventArgs e)
         {
 
         }
